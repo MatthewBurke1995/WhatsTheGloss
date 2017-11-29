@@ -25,10 +25,9 @@ def main_app():
             print('no file')
             return redirect(url_for('main_app'))
         pdf_file = request.files['file']
-        chapter_numbers = request.form.get('chapter_numbers').split(' ')
+        chapter_numbers = [int(i) for i in request.form.get('chapter_numbers').split(' ')]
         num_of_terms = int(request.form.get('num_of_terms'))
-        chapters =[['a','b','c','d'],['x','y','z'],['e','f','g','h']]
-        chapters = list(important_words_per_chapter(pdf_file, num_of_terms))
+        chapters = list(important_words_per_chapter(pdf_file, num_of_terms, chapter_numbers))
         print(num_of_terms)
         print(chapter_numbers)
         return render_template('index.html', chapters=chapters)
@@ -62,19 +61,22 @@ def tokenize(text):
 
 
 
-def important_words_per_chapter(pdf_file, num_of_terms):
-    #pdfFileObj = open(pdf_file, 'rb')
-
+def important_words_per_chapter(pdf_file, num_of_terms, chapter_numbers):
     pdfReader = PyPDF2.PdfFileReader(pdf_file)
-    full_text=[]
-    for i in range(pdfReader.numPages):
-        pageObj = pdfReader.getPage(i)
-        full_text.append(pageObj.extractText())
+    chapter_text=[]
+    previous_starting_page=0
+    for index,starting_page in enumerate(chapter_numbers):
+        single_chapter =[]
 
-    full_text = ' '.join(full_text)
-    chapter_text = full_text.split('CHAPTER')[1:]
+        for j in range(previous_starting_page, starting_page):
+            pageObj = pdfReader.getPage(j)
+            single_chapter.append(pageObj.extractText())
+
+        previous_starting_page = starting_page
+        chapter_text.append(' '.join(single_chapter))
 
 
+    chapter_text = chapter_text[1:]
     tfidf = TfidfVectorizer(tokenizer=tokenize, stop_words=stop_words)
     tfs = tfidf.fit_transform(chapter_text)
     feature_names = tfidf.get_feature_names()
@@ -87,6 +89,5 @@ def important_words_per_chapter(pdf_file, num_of_terms):
 
         yield([feature_names[col] for col in
            sorted(response.nonzero()[1],key= lambda col:response[0, col], reverse=True)[:num_of_terms]])
+
         currentchapter+=1
-
-
