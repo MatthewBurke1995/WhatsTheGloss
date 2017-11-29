@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>What's the gloss?</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+
+  .bg-2 { 
+      background-color: #474e5d; /* Dark Blue */
+      color: #ffffff;
+  }
+
+</style>
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">What's the gloss?</a>
+
+</nav>
+
+
+ 
+<div class="container bg-1">
+  <div class="row" style="height:200px;">
+    <div class="col-sm-4 bg-inverse text-white" >
+      <h3>How do I use it?</h3>
+      <p class="text-light bg-dark">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>What is TF-IDF?</h3>
+      <p>Lorem  dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Why am I not getting any results?</h3>        
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+  </div>
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+
+	<form action="/action.html" method="post" >
+          <label for="chapter_numbers">Write down each chapter starting page</label>
+
+	  <input type="text" id="chapter_numbers" pattern="[0-9 ]+">
+	  <input type="file" name="file">
+	  <input type="submit" value="upload">
+	</form>
+
+    </div>
+
+    <div class="col-sm-6">
+     <h3>Glossary:</h3>
+	{% if chapters %}
+	<p> Chapters exists </p>
+	{% endif %}
+     <!--   {% for chapter in chapters %}
+	    <h5>Chapter: {{ chapter.index }} </h5> 
+	<ul>
+	    {% for word in chapter %}
+		<li> {{word}} </li>
+	     {% endfor %}
+	</ul>
+	{% endfor %} -->
+	
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+</html>
+
