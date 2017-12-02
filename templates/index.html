@@ -31,21 +31,41 @@
 
  
 <div class="container bg-1">
-  <div class="row" style="height:200px;">
+  <div class="row"> 
     <div class="col-sm-4 bg-inverse text-white" >
-      <h3>How do I use it?</h3>
-      <p class="text-light bg-dark">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <h3>What is it and how do I use it?</h3>
+      <p>Terminology can be a major barrier to learning a new subject. 
+      Ideally students would have a glossary of terms before they start
+      studying. This program helps to make that list by identifying 
+      the most important words of each chapter.
+      </p>
+      <p>
+      To use this tool you need to upload the PDF file to be analyzed and 
+      input either the chapter page numbers or a phrase that occurs at the
+      beginningi of each chapter.
+      </p>
     </div>
+
     <div class="col-sm-4">
-      <h3>What is TF-IDF?</h3>
-      <p>Lorem  dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <h3>How does it work?</h3>
+      <p>First the PDF is converted into text and then seperated into seperate chapters.
+        It can find the chapter borders through either a list of numbers for each chapter
+        or a key phrase in the form of a 'Regular Expression' (WIP) that marks the start
+        of a chapter e.g. "In this chapter..."</p>
+
+      <p>Once the chapter borders are finalized it removes any stop words
+      and utilizes TF-IDF to collect the most important words for each chapter.</p>
     </div>
+
     <div class="col-sm-4">
-      <h3>Why am I not getting any results?</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <h3>Why am I getting bad results?</h3>        
+      <p>PDF's might be nice to read but they can be a complete mess underneath
+      the hood. Occasionally there are words within the document that control
+      formatiing but don't appear on the page. If the PDF is just a scan of
+      pages then it is impossible to process the text.
+       </p>
+      <p>The easiest way to check if your PDF can be processsed is to see if you can highlight text.
+         If you can highlight text then the document can be processed. </p>
     </div>
   </div>
 </div>
