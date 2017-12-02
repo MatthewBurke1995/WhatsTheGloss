@@ -19,8 +19,8 @@ def tokenize(text):
 
 
 def important_words_per_chapter(pdf_file, chapter_numbers=None, chapter_phrase=None):
+    """Input of pdf file, chapter """
     num_of_terms=20
-
     pdfReader = PyPDF2.PdfFileReader(pdf_file)
 
     if chapter_numbers:
@@ -29,20 +29,16 @@ def important_words_per_chapter(pdf_file, chapter_numbers=None, chapter_phrase=N
     if chapter_phrase:
         chapter_text = get_chapters_from_phrase(pdfReader, chapter_phrase)
 
-
     tfidf = TfidfVectorizer(tokenizer=tokenize, stop_words=stop_words)
-    tfs = tfidf.fit_transform(chapter_text)
+    tfs = tfidf.fit_transform(chapter_text) #Not just assigning variable this line changes state
     feature_names = tfidf.get_feature_names()
 
-    chapters_left=len(chapter_text)
     currentchapter=0
     while currentchapter < len(chapter_text):
-
         response = tfidf.transform([chapter_text[currentchapter]])
 
-        yield([feature_names[col] for col in
-           sorted(response.nonzero()[1],key= lambda col:response[0, col], reverse=True)[:num_of_terms]])
-
+        yield([feature_names[col] for col in sorted(response.nonzero()[1],
+		key= lambda col:response[0, col], reverse=True)[:num_of_terms]])
         currentchapter+=1
 
 
@@ -51,6 +47,7 @@ def important_words_per_chapter(pdf_file, chapter_numbers=None, chapter_phrase=N
 
 
 def get_chapters_from_nums(pdfReader,chapter_numbers):
+    """ """
     chapter_text=[]
     previous_starting_page=0
     for index,starting_page in enumerate(chapter_numbers):
@@ -62,7 +59,8 @@ def get_chapters_from_nums(pdfReader,chapter_numbers):
 
         previous_starting_page = starting_page
         chapter_text.append(' '.join(single_chapter))
-    return chapter_text[1:] #remove prologue 
+
+    return chapter_text[1:] #return chapters without prologue 
 
 
 
@@ -75,5 +73,5 @@ def get_chapters_from_phrase(pdfReader, chapter_phrase):
 
     full_text = ' '.join(full_text)
     chapter_text = re.split(chapter_phrase, full_text)
-    return chapter_text[1:] #remove prologue
+    return chapter_text[1:] #return chapters without prologue
 

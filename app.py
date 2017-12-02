@@ -7,16 +7,6 @@ app.secret_key = 'super_secret'
 
 import logic.app_logic as logic
 
-""" You're not gonna need it
-
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-ALLOWED_EXTENSIONS = set(['pdf'])
-def allowed_file(filename):
-    return '.' in filename and
-        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-"""
-
-
 
 @app.route('/', methods=['GET','POST'])
 def main_app():
