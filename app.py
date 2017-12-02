@@ -27,23 +27,27 @@ def main_app():
             return redirect(url_for('main_app'))
         pdf_file = request.files['file']
 
+
         chapter_numbers = request.form.get('chapter_numbers', None)
         if chapter_numbers:
             chapter_numbers = [int(i) for i in chapter_numbers.split(' ')]
+            chapters = list(logic.important_words_per_chapter(pdf_file,  chapter_numbers=chapter_numbers))
 
 
-        #num_of_terms = int(request.form.get('num_of_terms'))
+        chapter_phrase = request.form.get('chapter_phrase', None)
+        if chapter_phrase and not chapter_numbers:
+            chapters = list(logic.important_words_per_chapter(pdf_file,  chapter_phrase=chapter_phrase))
 
 
-        chapters = list(logic.important_words_per_chapter(pdf_file,  chapter_numbers))
-        print(chapter_numbers)
+
+
+
         return render_template('index.html', chapters=chapters)
+
+
     else:
         return render_template('index.html')
 
 if __name__ == '__main__':
     flaskapp.run(debug=True)
-
-
-
 
