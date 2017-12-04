@@ -54,7 +54,7 @@
       <h3>How does it work?</h3>
       <p>First the PDF is converted into text and then seperated into
       seperate chapters. It can find the chapter borders through either
-      a list of numbers for each chapter or a key phrase in the form of
+      a list of numbers (seperated by spaces) for each chapter or a key phrase in the form of
       a 'Regular Expression' (WIP) that marks the start of a chapter
       e.g. "In this chapter..."</p>
 
@@ -84,12 +84,12 @@
 
 	<form method="post" enctype="multipart/form-data">
      <label for="chapter_numbers">Write down chapter starting pages</label> 
-     <input type="text" name="chapter_numbers" pattern="[0-9 ]+" value="17 36..." size="30"> 
+     <input type="text" name="chapter_numbers" pattern="[0-9 ]+" size="30"> 
 
 
 
       <label for="chapter_phrase">Or a phrase to seperate chapters</label>
-      <input type="text" name="chapter_phrase" size="30" value="e.g. This chapter contains"> 
+      <input type="text" name="chapter_phrase" size="30"> 
      <!--
       <label for="num_of_terms">And how many terms per chapter?</label>
       <input type="text" name="num_of_terms" pattern="[0-9]+" value="10">
