@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+<head>
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+
+</head>
+<body>
+
+{% block scripts %}
+    {{ super() }}
+{% endblock %}
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+ 
+{% block mainbody %}
+	{% if chapters %}
+	     <h3>Glossary:</h3>
+	 	{% for chapter in chapters %}
+		    <h4> Chapter: {{ loop.index }} </h4> 
+		<p>
+		    {% for word in chapter %}
+			{{word}}
+		    {% endfor %}
+		</p>
+		{% endfor %}
+	{% endif %}
+    </div>
+  </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+</body>
+</html>
+
