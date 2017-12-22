@@ -1,39 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+{% extends "layout.html" %}
 <head>
-  <title>What's the gloss?</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% block head %}
+  {{ super() }}
 
-<style>
 
-.bg-2 { 
-      background-color: #474e5d; /* Dark Blue */
-      color: #ffffff;
-      };
-
-.display_block {
-	display:block;
-}
-
-</style>
-
+{% endblock %}
 
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">What's the gloss?</a>
 
-</nav>
+{% block scripts %}
+    {{ super() }}
 
+    <script type="text/javascript">
+          function loading(){
+                document.getElementById("loadingObj").style.display = "block";
+              }
+       </script>
 
+{% endblock %}
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
  
+{% block mainbody %}
 <div class="container bg-1">
   <div class="row"> 
     <div class="col-sm-4 bg-inverse text-white" >
@@ -78,13 +72,13 @@
   </div>
 </div>
   
-<div class="container">
+<div class="container center_div">
   <div class="row">
     <div class="col-sm-6 col-md-offset-3">
 
-	<form method="post" enctype="multipart/form-data">
+	<form method="post" action="/glossary.html" enctype="multipart/form-data" class="center-block">
      <label for="chapter_numbers">Write down chapter starting pages</label> 
-     <input type="text" name="chapter_numbers" pattern="[0-9 ]+" size="30"> 
+     <input type="text" name="chapter_numbers" size="30"> 
 
 
 
@@ -95,35 +89,33 @@
       <input type="text" name="num_of_terms" pattern="[0-9]+" value="10">
 	-->
 
-
 	  <input type="file" name="file" accept=".pdf" required>
-	  <input type="submit" value="upload">
+
+
+	  <input type="submit" value="upload" onclick="loading();">
 	</form>
+   </div>
+ </div>
+</div>
 
-    </div>
-    </div>
 
-    <div class="row">
+<div class="container">
+  <div class="row">
     <div class="col-sm-6 col-md-offset-3">
+        <div id="loadingObj">
+            <img class="img-responsive center-block" src="../static/loadingimage.gif" alt="Currently loading" align="center" height="200" width="200">
 
-	{% if chapters %}
-	     <h3>Glossary:</h3>
-	 	{% for chapter in chapters %}
-		    <h4> Chapter: {{ loop.index }} </h4> 
-		<p>
-		    {% for word in chapter %}
-			{{word}}
-		    {% endfor %}
-		</p>
-		{% endfor %}
-	{% endif %}
+        </div>
+
     </div>
-  </div>
   </div>
 </div>
 
 
 
+
+</div>
+{% endblock %}
 </body>
 </html>
 

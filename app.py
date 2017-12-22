@@ -4,23 +4,27 @@ from werkzeug.utils import secure_filename
 UPLOAD_FOLDER = '/static'
 app = Flask(__name__)
 app.secret_key = 'super_secret'
-
+import re
 import logic.app_logic as logic
 
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/')
 def main_app():
+    return render_template('index.html')
 
+@app.route('/glossary.html', methods=['GET','POST'])
+def show_glossary():
     if request.method == 'POST':
         if 'file' not in request.files:
             print('no file')
-            return redirect(url_for('main_app'))
+            return "Error: no file was attached"
+            #return redirect(url_for('main_app'))
         pdf_file = request.files['file']
 
 
         chapter_numbers = request.form.get('chapter_numbers', None)
         if chapter_numbers:
-            chapter_numbers = [int(i) for i in chapter_numbers.split(' ')]
+            chapter_numbers = [int(i) for i in re.split('\D+', chapter_numbers)]
             chapters = list(logic.important_words_per_chapter(pdf_file,  chapter_numbers=chapter_numbers))
 
 
@@ -28,15 +32,17 @@ def main_app():
         if chapter_phrase and not chapter_numbers:
             chapters = list(logic.important_words_per_chapter(pdf_file,  chapter_phrase=chapter_phrase))
 
-
-
-
-
-        return render_template('index.html', chapters=chapters)
+        return render_template('glossary.html', chapters=chapters)
 
 
     else:
         return render_template('index.html')
+
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return "an error occured, either the pdf is unreadable or there was a mistake in the inputs"
+
 
 if __name__ == '__main__':
     flaskapp.run(debug=True)
