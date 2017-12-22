@@ -72,11 +72,11 @@
   </div>
 </div>
   
-<div class="container">
+<div class="container center_div">
   <div class="row">
     <div class="col-sm-6 col-md-offset-3">
 
-	<form method="post" action="/glossary.html" enctype="multipart/form-data">
+	<form method="post" action="/glossary.html" enctype="multipart/form-data" class="center-block">
      <label for="chapter_numbers">Write down chapter starting pages</label> 
      <input type="text" name="chapter_numbers" size="30"> 
 
@@ -94,17 +94,26 @@
 
 	  <input type="submit" value="upload" onclick="loading();">
 	</form>
+   </div>
+ </div>
+</div>
 
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-offset-3">
         <div id="loadingObj">
-            <img class="col-centered" src="../static/loadingimage.gif" alt="Currently loading" align="middle" height="200" width="200">
+            <img class="img-responsive center-block" src="../static/loadingimage.gif" alt="Currently loading" align="center" height="200" width="200">
 
         </div>
 
     </div>
-    </div>
-
-
+  </div>
 </div>
+
+
+
+
 </div>
 {% endblock %}
 </body>
