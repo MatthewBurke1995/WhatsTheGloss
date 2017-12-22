@@ -1,2 +1,7 @@
 ngrok
 *.pyc
+__pycache__/*
+logic/__pycache__/*
+__pycache__/app.cpython-36.pyc
+logic/__pycache__/app_logic.cpython-36.pyc
+static/*

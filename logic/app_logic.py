@@ -4,7 +4,16 @@ import PyPDF2
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.tokenize import RegexpTokenizer
+from nltk.stem import *
+import itertools
+
 stop_words = stopwords.words('english')
+
+
+def unique_stems(list_of_words, stemmer=SnowballStemmer('english')):
+    stems = [stemmer.stem(word) for word in list_of_words]
+    stem_word_dic = dict(itertools.zip_longest(stems, list_of_words))
+    return [stem_word_dic.get(word,word) for word in set(stems)]
 
 
 
@@ -14,7 +23,7 @@ def tokenize(text):
     text=text.lower()
     tokenizer = RegexpTokenizer(r'\w+')
     tokens = tokenizer.tokenize(text)
-    return [w for w in tokens if w not in stop_words and not w.isdigit() ]
+    return [w for w in tokens if w not in stop_words and w.isalpha()]
 
 
 

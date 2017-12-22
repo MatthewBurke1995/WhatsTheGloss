@@ -32,6 +32,7 @@ def show_glossary():
         if chapter_phrase and not chapter_numbers:
             chapters = list(logic.important_words_per_chapter(pdf_file,  chapter_phrase=chapter_phrase))
 
+        chapters = [logic.unique_stems(chapter) for chapter in chapters]
         return render_template('glossary.html', chapters=chapters)
 
 
@@ -41,7 +42,7 @@ def show_glossary():
 
 @app.errorhandler(500)
 def page_not_found(e):
-    return "an error occured, either the pdf is unreadable or there was a mistake in the inputs"
+    return render_template('500error.html')
 
 
 if __name__ == '__main__':

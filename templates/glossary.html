@@ -19,6 +19,10 @@
 {% endblock %}
  
 {% block mainbody %}
+
+<div class="container">
+  <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
 	{% if chapters %}
 	     <h3>Glossary:</h3>
 	 	{% for chapter in chapters %}
@@ -30,8 +34,10 @@
 		</p>
 		{% endfor %}
 	{% endif %}
+
+
+
     </div>
-  </div>
   </div>
 </div>
 
