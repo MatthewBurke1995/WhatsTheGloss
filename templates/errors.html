@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+<head>
+{% block head %}
+  {{ super() }}
+
+
+{% endblock %}
+
+</head>
+<body>
+
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+ 
+{% block mainbody %}
+
+<div class="container center_div">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+		<div class="alert alert-danger" role="alert">
+		<strong> {{ error }} </strong>, <a href="/">head back to the landing page to try again.</a>
+
+		</div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+</body>
+</html>
+

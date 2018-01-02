@@ -2,26 +2,27 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 from werkzeug.utils import secure_filename
 UPLOAD_FOLDER = '/static'
-app = Flask(__name__)
-app.secret_key = 'super_secret'
+application = Flask(__name__)
+application.secret_key = 'super_secret'
+
 import re
 import logic.app_logic as logic
 
 
-@app.route('/')
+@application.route('/')
 def main_app():
     return render_template('index.html')
 
-@app.route('/walkthrough.html')
+@application.route('/walkthrough.html')
 def walkthrough():
     return render_template('walkthrough.html')
 
-@app.route('/explanation.html')
+@application.route('/explanation.html')
 def insides():
     return render_template('explanation.html')
 
 
-@app.route('/glossary.html', methods=['GET','POST'])
+@application.route('/glossary.html', methods=['GET','POST'])
 def show_glossary():
     if request.method == 'POST':
         if 'file' not in request.files:
@@ -49,11 +50,11 @@ def show_glossary():
     else:
         return render_template('index.html')
 
-@app.errorhandler(500)
+@application.errorhandler(500)
 def page_not_found(e):
     return render_template('errors.html', error="There was an error processing the PDF file")
 
-@app.errorhandler(404)
+@application.errorhandler(404)
 def page_not_found(e):
     return render_template('errors.html', error="It looks like that page doesn't exist")
 

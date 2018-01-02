@@ -30,7 +30,7 @@ def tokenize(text):
 def important_words_per_chapter(pdf_file, chapter_numbers=None, chapter_phrase=None):
     """Input of pdf file, chapter """
     num_of_terms=20
-    pdfReader = PyPDF2.PdfFileReader(pdf_file)
+    pdfReader = PyPDF2.PdfFileReader(pdf_file, strict=False)
 
     if chapter_numbers:
         chapter_text = get_chapters_from_nums(pdfReader, chapter_numbers)

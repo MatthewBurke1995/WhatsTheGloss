@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+<head>
+{% block head %}
+  {{ super() }}
+
+
+{% endblock %}
+
+</head>
+<body>
+
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+ 
+{% block mainbody %}
+
+<div class="container center_div">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+	<ol>
+	   <li>Choose a PDF file that can be seperated into distinct chapters</li>
+	   <li>
+		<ul>
+			<li> If each chapter starts with a specific phrase e.g. <quote>'This chapter contains' </quote> then type that phrase into the top text box, this phrase must only appear at the start of chapters (use CTRL + f on the document to check where the phrase appears). This phrase is case sensitive and also accepts regular expressions. </li>
+			<li> If there is no phrase that occurs at the start of each chapter, then type in the start numbers of each chapter. These numbers must be the absolute values i.e. the title page is '1' and each page after that adds 1. </li>
+
+	       </ul> 
+	  </li>
+
+	  <li>Press submit and wait for the glossary to appear. This process might take several minutes depending on how large the file is. </li>
+
+       </ol>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+</body>
+</html>
+

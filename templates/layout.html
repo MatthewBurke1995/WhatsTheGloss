@@ -6,7 +6,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href=",,/static/sequence-theme.basic.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -52,27 +51,25 @@ div#content {
 {% endblock %}
 
 {% block navbar %}
-
-
-
-
-
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-faded">
-  <div class="container-fluid">
+<div class="navbar navbar-inverse">
+  <div class="container">
        <a class="navbar-brand" href="/">What's the gloss?</a>
-	  </div>
-
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#">Features</a>
-      <a class="nav-item nav-link" href="#">Pricing</a>
-      <a class="nav-item nav-link disabled" href="#">Disabled</a>
+    <button class="navbar-toggle" data-toggle="collapse" data-target="#mynavbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="walkthrough.html">Walkthrough</a>
+        </li>
+        <li><a href="explanation.html">How it works</a>
+        </li>
+      </ul>
     </div>
   </div>
+</div>
 
-
-</nav>
 
 {% endblock %}
 
