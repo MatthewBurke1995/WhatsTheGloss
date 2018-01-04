@@ -21,19 +21,30 @@
 <div class="container center_div">
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
+    <h3> Walk-through </h3>
+    <img class="img-responsive center-block rounded" src="../static/demonstration1.png" alt="A picture that shows the first page of a biology textbook in the top left corner the page index shows that this page is the first page of the book but the 26th page of the overall document. The main body of the first page starts with the phrase 'this chapter contains'" style="max-width:100%; height=100%; border:1px solid #021a40;">
 	<ol>
-	   <li>Choose a PDF file that can be seperated into distinct chapters</li>
-	   <li>
-		<ul>
-			<li> If each chapter starts with a specific phrase e.g. <quote>'This chapter contains' </quote> then type that phrase into the top text box, this phrase must only appear at the start of chapters (use CTRL + f on the document to check where the phrase appears). This phrase is case sensitive and also accepts regular expressions. </li>
-			<li> If there is no phrase that occurs at the start of each chapter, then type in the start numbers of each chapter. These numbers must be the absolute values i.e. the title page is '1' and each page after that adds 1. </li>
-
-	       </ul> 
+	   <li>Pick a way to differentiate between chapters. If there is a special phrase to indicate the start of a chapter e.g. "Chapter Contents" then go to <i>a</i>. If no such phrase exists than go to <i>b</i>
+		<ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+        <br>
+			<li>In the above example we could use the phrase <b>Chapter Contents</b> to signal the start of each chapter, we can check that this only appears at the start of each chapter by using CTRL-F. Another option would be to use the phrase <b>CHAPTER</b>. All phrases are case sensitive and regex is also accepted. </li>
+			<li>In other cases we can signal the start of chapters by writing in the page number. The above example has an index of '1' but it is actually the 26th page in the document. Therefore we type the number <b>26</b> into the form and continue the process for each chapter</li>
+            <br>
+	       </ol> 
 	  </li>
 
-	  <li>Press submit and wait for the glossary to appear. This process might take several minutes depending on how large the file is. </li>
+	  <li>Click the Choose file button to select your PDF document and then press <b>Submit</b></li>
+      <li>You will be redirected to a glossary once the file has been uploaded and processed, this can take a few minutes</li>
 
        </ol>
+
+    <img class="img-responsive center-block rounded" src="../static/Interface.png" alt="A picture that shows the main interface" style="max-width:100%; height=100%; border:1px solid #021a40;">
+
+
+    <h4>Warning:</h4>
+    <p> PDF's are not necessarily a machine readable file type. Some PDF's can be simply be image scans while others have non-standard formatting. If there's been a problem processing your PDF then another option is to open the PDF in adobe reader, scroll out so you can see multiple pages and press CTRL-A. Copy this to a txt file and upload it the same way.</p>
+    <p> txt files do not have page numbers and so you will have to use a phrase to seperate different chapters. If no such phrase exists you might try inserting the phrase <b>CHAPTER START</b> at each chapter beginning and then use that same phrase on the form.</p>
+
     </div>
   </div>
 </div>

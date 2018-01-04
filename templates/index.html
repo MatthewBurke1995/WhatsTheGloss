@@ -34,25 +34,25 @@
 <div class="container center_div">
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
-
+    <h5> Is this your first time? Try flicking through the <a href='/walkthrough.html'> Walk-through </a> to get an idea how to use this tool. </h5>
 	<form method="post" action="/glossary.html" enctype="multipart/form-data" class="center-block">
-        <div class="form-group">
 
-     <label for="chapter_numbers">Write down chapter starting pages</label> 
-     <input type="text" class="form-control" name="chapter_numbers"> 
-        </div>
 
         <div class="form-grpup">
-      <label for="chapter_phrase">Or a phrase to seperate chapters</label>
+      <label for="chapter_phrase">Write down a phrase that starts each chapter</label>
       <input type="text" class="form-control" name="chapter_phrase"> 
         </div>
 
+     <div class="form-group">
+     <label for="chapter_numbers">Or write down the chapter starting pages</label> 
+     <input type="text" class="form-control" name="chapter_numbers"> 
+        </div>
      <!--
       <label for="num_of_terms">And how many terms per chapter?</label>
       <input type="text" name="num_of_terms" pattern="[0-9]+" value="10">
 	-->
-	  <input type="file" name="file" accept=".pdf" required>
-	  <button type="submit" value="upload" class="btn btn-primary" onclick="loading();">Submit </button>
+	  <input type="file" name="file" accept=".pdf, .txt" required>
+	  <button type="submit" value="upload" class="btn btn-primary" onclick="loading();">Submit</button>
     </div>
 	</form>
    </div>

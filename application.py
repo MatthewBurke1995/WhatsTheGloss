@@ -25,11 +25,9 @@ def insides():
 @application.route('/glossary.html', methods=['GET','POST'])
 def show_glossary():
     if request.method == 'POST':
-        if 'file' not in request.files:
-            print('no file')
-            return "Error: no file was attached"
-            #return redirect(url_for('main_app'))
         pdf_file = request.files['file']
+        if pdf_file.filename.endswith('pdf'):
+            pass
 
 
         chapter_numbers = request.form.get('chapter_numbers', None)
@@ -52,7 +50,7 @@ def show_glossary():
 
 @application.errorhandler(500)
 def page_not_found(e):
-    return render_template('errors.html', error="There was an error processing the PDF file")
+    return render_template('errors.html', error="There was an error processing the file")
 
 @application.errorhandler(404)
 def page_not_found(e):
