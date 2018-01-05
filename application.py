@@ -26,27 +26,27 @@ def insides():
 def show_glossary():
     if request.method == 'POST':
         pdf_file = request.files['file']
-        if pdf_file.filename.endswith('pdf'):
-            pass
-
-
-        chapter_numbers = request.form.get('chapter_numbers', None)
-        if chapter_numbers:
-            chapter_numbers = [int(i) for i in re.split('\D+', chapter_numbers)]
-            chapters = list(logic.important_words_per_chapter(pdf_file,  chapter_numbers=chapter_numbers))
-
-
+        chapter_numbers = request.form.get('chapter_numbers', None)            
         chapter_phrase = request.form.get('chapter_phrase', None)
+        if pdf_file.filename.endswith('pdf'):
 
-        if chapter_phrase and not chapter_numbers:
-            chapters = list(logic.important_words_per_chapter(pdf_file,  chapter_phrase=chapter_phrase))
+            if chapter_numbers:
+                chapter_numbers = [int(i) for i in re.split('\D+', chapter_numbers)]
+                chapters = list(logic.important_words_per_chapter(pdf_file,  chapter_numbers=chapter_numbers))
+
+            elif chapter_phrase:
+                chapters = list(logic.important_words_per_chapter(pdf_file,  chapter_phrase=chapter_phrase))
+
+
+        elif pdf_file.filename.endswith('txt') and chapter_phrase:
+                chapters = list(logic.important_words_per_chapter_txt(pdf_file,  chapter_phrase=chapter_phrase))
 
         chapters = [logic.unique_stems(chapter) for chapter in chapters]
         return render_template('glossary.html', chapters=chapters)
 
-
     else:
         return render_template('index.html')
+
 
 @application.errorhandler(500)
 def page_not_found(e):
