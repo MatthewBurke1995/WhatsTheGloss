@@ -23,9 +23,9 @@
 <div class="container">
   <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-	{% if chapters %}
+	{% if glossary %}
 	     <h3>Glossary:</h3>
-	 	{% for chapter in chapters %}
+	 	{% for chapter in glossary %}
 		    <h4> Chapter: {{ loop.index }} </h4> 
 		<p>
 		    {% for word in chapter %}

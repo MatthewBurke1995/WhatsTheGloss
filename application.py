@@ -25,24 +25,35 @@ def insides():
 @application.route('/glossary.html', methods=['GET','POST'])
 def show_glossary():
     if request.method == 'POST':
-        pdf_file = request.files['file']
-        chapter_numbers = request.form.get('chapter_numbers', None)            
+        file_ = request.files['file']
+        chapter_numbers = request.form.get('chapter_numbers', None)
         chapter_phrase = request.form.get('chapter_phrase', None)
-        if pdf_file.filename.endswith('pdf'):
+
+        if file_.filename.endswith('pdf'):
+            pdf_file = file_
 
             if chapter_numbers:
                 chapter_numbers = [int(i) for i in re.split('\D+', chapter_numbers)]
-                chapters = list(logic.important_words_per_chapter(pdf_file,  chapter_numbers=chapter_numbers))
+                chapter_text = logic.get_chapter_text_pdf(pdf_file, chapter_numbers = chapter_numbers)
+                glossary = logic.get_glossary(chapter_text)
 
             elif chapter_phrase:
-                chapters = list(logic.important_words_per_chapter(pdf_file,  chapter_phrase=chapter_phrase))
+                chapter_text = logic.get_chapter_text_pdf(pdf_file, chapter_phrase=chapter_phrase)
+                glossary = logic.get_glossary(chapter_text)
 
 
-        elif pdf_file.filename.endswith('txt') and chapter_phrase:
-                chapters = list(logic.important_words_per_chapter_txt(pdf_file,  chapter_phrase=chapter_phrase))
+        elif file_.filename.endswith('txt'):
+            txt_file = file_
 
-        chapters = [logic.unique_stems(chapter) for chapter in chapters]
-        return render_template('glossary.html', chapters=chapters)
+            if chapter_phrase:
+                chapter_text = logic.get_chapter_text_txt(txt_file, chapter_phrase = chapter_phrase)
+                glossary = logic.get_glossary(chapter_text)
+
+            elif chapter_numbers:
+                return render_template('errors.html', error="Text files can't use page numbers, try using a phrase to seperate chapters")
+
+        glossary = [logic.unique_stems(chapter) for chapter in glossary]
+        return render_template('glossary.html', glossary=glossary)
 
     else:
         return render_template('index.html')
